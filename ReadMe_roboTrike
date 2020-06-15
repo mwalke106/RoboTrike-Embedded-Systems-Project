@@ -1,6 +1,6 @@
 ReadMe:
 
-RoboTrike Embedded Software Term Project, 2014
+RoboTrike Embedded Software Term Project, EECS51 2014
 
 The robotrike is a three wheeled holonomically moving robot running an Intel 8086 processor. User interface consists of a keypad controlling the robot's movements, as well as an LED display for feedback indicating if the commands were properly processed. The robot's movements are controlled by up/down/left/right arrow keys on a keypad. The speed of the motors controlling the robot's 3 wheels is set by PWM logic. Routines currently in this repository are Keypad Debouncing and Display.
 
