@@ -1,0 +1,32 @@
+ReadMe:
+
+RoboTrike Embedded Software Term Project, 2014
+
+The robotrike is a three wheeled holonomically moving robot running an Intel 8086 processor. User interface consists of a keypad controlling the robot's movements, as well as an LED display for feedback indicating if the commands were properly processed. The robot's movements are controlled by up/down/left/right arrow keys on a keypad. The speed of the motors controlling the robot's 3 wheels is set by PWM logic. Routines currently in this repository are Keypad Debouncing and Display.
+
+Keypad:
+These functions register a single key press on a 4 by 4 keypad by enqueue-ing the key press in an event buffer that  holds the event constant (chosen to be 1 in this case) followed by the key value. The functions in this file are:
+  InitKeypad:      initalizes the variables needed to scan and debounce, namely
+                   the current row, current key value, and the debounce counter
+  ScanAndDebounce: scans the keypad 1 row each time it is called for a key
+                   press. If a key is pressed, it will check if the key
+                   as been pressed for a set debounce time (50 ms) before
+                   the press is enqueued as an event. 
+
+Display:
+These procedures are the display routines needed in order to output a hexadecimal or decimal string to a 7 segment LED display. The procedures included in this file are:
+  DisplayInit - This procedure sets up for the display procedure by initializing the
+  			  the muxing index and filling the muxing buffer with 0s.
+  Display - Thus procedure converts the strings in the string buffer (or a string 
+  		  passed to the function in ES:SI) to the segment pattern and stores them
+  		  in another buffer that will be used by the multiplexing function to 
+  		  output the string to the LED display. 
+  DisplayNum - This procedure calls the Dec2String function to convert a number
+  			 to a decimal string and stores it in a buffer starting at DS:SI.
+  			 It then moves this buffer to ES, so that it can be used in the
+  			 display function.
+  DisplayHex - This procedure does the same as DisplayNum, except it call Hex2String
+  			 and converts a number to hexadecimal to be displayed on the LED
+  			 display.
+  LEDMux - This procedure gets the next digit in the buffer containing the segment
+				 pattern conversions and outputs it to the display. 
